@@ -1,0 +1,78 @@
+name: Build DevMeld for Mac and Linux
+
+on:
+  workflow_dispatch: # Allows you to trigger this manually from the GitHub UI
+  push:
+    branches: [ "main" ] # Also runs automatically when you push to main
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # Fallback if requirements.txt is missing specific Qt dependencies
+          pip install PySide6 requests
+
+      - name: Build macOS Executable
+        run: pyinstaller --noconfirm --onefile --windowed --name "devmeld" main.py
+
+      - name: Create Mac Launcher
+        run: |
+          echo '#!/bin/bash' > launch.command
+          echo 'cd "$(dirname "$0")"' >> launch.command
+          echo './devmeld' >> launch.command
+          chmod +x launch.command
+
+      - name: Upload Mac Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: devmeld-macos
+          path: |
+            dist/devmeld
+            launch.command
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install PySide6 requests
+
+      - name: Build Linux Executable
+        run: pyinstaller --noconfirm --onefile --windowed --name "devmeld" main.py
+
+      - name: Create Linux Launcher
+        run: |
+          echo '#!/bin/bash' > launch.sh
+          echo 'cd "$(dirname "$0")"' >> launch.sh
+          echo './devmeld' >> launch.sh
+          chmod +x launch.sh
+
+      - name: Upload Linux Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: devmeld-linux
+          path: |
+            dist/devmeld
+            launch.sh
