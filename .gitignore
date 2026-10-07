@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Build artifacts
+build/
+dist/
+*.spec
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local DevMeld Data (Keep IMPOBJ out of git to protect user sessions and local configs)
+IMPOBJ/user_session.json
+IMPOBJ/chatMSG/
+IMPOBJ/TODO_list/

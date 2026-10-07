@@ -1,0 +1,13 @@
+Copyright (c) 2026 Zennor. All Rights Reserved.
+
+This software and its source code are proprietary. 
+You may view this source code for educational or reference purposes only. 
+However, you may NOT:
+1. Copy, modify, merge, publish, distribute, sublicense, or sell copies of the Software.
+2. Reverse engineer, decompile, or disassemble the compiled Software.
+3. Use this code, in whole or in part, for commercial products or competing platforms.
+4. Remove or alter any copyright or proprietary notices.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES 
+OR OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.
