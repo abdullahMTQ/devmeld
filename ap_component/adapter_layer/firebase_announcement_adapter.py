@@ -2,11 +2,11 @@
 import requests
 from ap_component.config_parser import parse_firebase_config_txt
 from ap_component.adapter_layer.image_url_normalizer import normalize_image_url
-import os
+from impobj_utils import get_resource_path
 
 class FirebaseAnnouncementAdapter:
     def __init__(self):
-        config_path = os.path.join(os.path.dirname(__file__), "..", "FIREBASE_CONFIG.txt")
+        config_path = get_resource_path("ap_component/FIREBASE_CONFIG.txt")
         self.config = parse_firebase_config_txt(config_path)
         self.db_url = self.config.get("databaseURL", "")
         self.storage_bucket = self.config.get("storageBucket", "")
